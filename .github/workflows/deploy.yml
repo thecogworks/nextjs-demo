@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  repository_dispatch:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: npm ci
+      - run: npm run build
+      - run: npm run export
+      - uses: lauchacarro/Azure-Storage-Action@master
+        with:
+          enabled-static-website: 'true'
+          folder: 'out'
+          index-document: 'index.html'
+          error-document: 'index.html' # For Angular apps with routing enabled, this must point to the index.html file because the requested routes don't exist phyiscally and blob storage would throw a 404.
+          connection-string: ${{ secrets.STORAGE_CONNECTION_STRING }}
