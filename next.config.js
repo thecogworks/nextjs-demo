@@ -10,5 +10,19 @@ module.exports = withFonts({
   webpack(config, options) {
     return config;
   },
-  distDir: 'build'
+  distDir: 'build',
+  exportPathMap: async function (
+    defaultPathMap,
+    { dev, dir, outDir, distDir, buildId }
+  ) {
+    return {
+      '/': { page: '/' },
+      '/about': { page: '/about' },
+      '/contact': { page: '/contact' },
+    }
+  },
+  images: {
+    loader: "imgix",
+    path: "",
+  }
 }); 
