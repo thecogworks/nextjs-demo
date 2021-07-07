@@ -8,13 +8,20 @@ import Navigation from '../components/organisms/Navigation'
 import theme from '../themes/mui';
 
 function MyApp({ Component, pageProps }: AppProps) {
+
+  let pages = []
+
+  if (pageProps.data) {
+    pages = [...pageProps.data.navigation]
+  }
+
   return (
     <StylesProvider>
       <MuiThemeProvider theme={theme}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <LayoutContainer maxWidth={false} disableGutters>
-            <Navigation profileName="test" />
+            <Navigation pages={pages} />
             <Component {...pageProps} />
           </LayoutContainer>
         </ThemeProvider>

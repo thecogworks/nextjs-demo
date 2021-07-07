@@ -16,12 +16,26 @@ import { NavLink } from '../../molecules';
 import { LogoImage, StyledAppBar } from './Navigation.styles';
 
 export interface NavigationProps {
-  profileName: string;
+  pages: array;
 }
 
-const Navigation = ({ profileName }: NavigationProps) => {
+const Navigation = ({ pages }) => {
 
   const router = useRouter()
+
+  const menuItems = []
+
+  for (const [index, value] of pages.entries()) {
+    menuItems.push(
+      <Grid item>
+        <NavLink onClick={ () => router.push(value.url) }>
+          <Typography variant="sh4" color="grey">
+            { value.name }
+          </Typography>
+        </NavLink>
+      </Grid>
+    )
+  }
 
   return (
     <Box data-test-id="header-menu">
@@ -38,29 +52,7 @@ const Navigation = ({ profileName }: NavigationProps) => {
 
                 <Spacer asDivider y={3} />
 
-              <Grid item>
-                <NavLink onClick={ () => router.push('/') }>
-                  <Typography variant="sh4" color="grey">
-                    Home
-                  </Typography>
-                </NavLink>
-              </Grid>
-
-                <Grid item>
-                  <NavLink onClick={ () => router.push('/about') }>
-                    <Typography variant="sh4" color="grey">
-                      About
-                    </Typography>
-                  </NavLink>
-                </Grid>
-
-                <Grid item>
-                  <NavLink onClick={ () => router.push('/contact') }>
-                    <Typography variant="sh4" color="grey">
-                      Contact
-                    </Typography>
-                  </NavLink>
-                </Grid>
+                { menuItems }
               </Grid>
             </Grid>
           </Grid>

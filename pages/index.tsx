@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 
-export default function Home() {
+function Home () {
   return (
     <div className={styles.container}>
       <Head>
@@ -53,3 +53,21 @@ export default function Home() {
     </div>
   )
 }
+
+export async function getStaticProps() {
+  const res = await fetch('https://cogworksheadless.azurewebsites.net/Umbraco/Api/ContentApi/GetForWojtek')
+  const data = await res.json()
+
+  // console.log(data)
+
+  // By returning { props: { posts } }, the Blog component
+  // will receive `posts` as a prop at build time
+  return {
+    props: {
+      data
+    },
+    revalidate: 30
+  }
+}
+
+export default Home
