@@ -27,7 +27,7 @@ const Navigation = ({ pages }) => {
 
   for (const [index, value] of pages.entries()) {
     menuItems.push(
-      <Grid item>
+      <Grid key={value.id} item>
         <NavLink onClick={ () => router.push(value.url) }>
           <Typography variant="sh4" color="grey">
             { value.name }

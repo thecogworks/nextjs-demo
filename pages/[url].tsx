@@ -1,14 +1,41 @@
 import { useRouter } from 'next/router'
+import Head from 'next/head'
+import styles from '../styles/Home.module.css'
 
 function Page ({ data }) {
     const router = useRouter()
     const { url } = router.query
 
+    const pageData = data.navigation.find(page => {
+      return page.url.slice(0, -1).substring(1) === url
+    })
+
+    const pageId = pageData.id
+    const pageContent = data.pages.find(page => {
+      return page.id === pageId
+    })
+
     return (
-        <>
-            page test 123
-            { url }
-        </>
+      <div className={styles.container}>
+      <Head>
+        <title>{pageContent.title}</title>
+      </Head>
+
+      <main className={styles.main}>
+        <h2 className={styles.title}>
+          {pageContent.title}
+        </h2>
+
+        <div>
+          {pageContent.teaser}
+        </div>
+
+        <div
+  dangerouslySetInnerHTML={{
+    __html: pageContent.body
+  }}></div>
+      </main>
+    </div>
     )
 }
 
@@ -41,8 +68,7 @@ export async function getStaticProps() {
     return {
       props: {
         data
-      },
-      revalidate: 30
+      }
     }
 }
 
