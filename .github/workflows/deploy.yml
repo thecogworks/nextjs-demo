@@ -5,8 +5,6 @@ on:
   push:
     branches: [ master ]
 
-env:
-  ver: "$(date +"%d-%m-%Y-%H%M")"
 jobs:
   build:
     # The type of runner that the job will run on
@@ -18,12 +16,12 @@ jobs:
         with:
           node-version: 12
       - run: mkdir out
-      - run: mkdir "out/${{ env.ver }}"
-      - run: mkdir "out/$(ver)/build"
+      - run: mkdir "out/$(GITHUB_SHA)"
+      - run: mkdir "out/$(GITHUB_SHA)/build"
       - run: npm ci
       - run: npm run build
-      - run: mv 'build' "out/$(ver)/"
-      - run: npm run export -o "out/$(ver)"
+      - run: mv 'build' "out/$(GITHUB_SHA)/"
+      - run: npm run export -o "out/$(GITHUB_SHA)"
       - uses: lauchacarro/Azure-Storage-Action@master
         with:
           enabled-static-website: 'true'
