@@ -19,6 +19,7 @@ jobs:
       - run: mkdir out
       - run: cd out
       - run: mkdir "$(date +"%d-%m-%Y")"
+      - run: pwd
       - run: cd ../..
       - run: npm ci
       - run: npm run build
