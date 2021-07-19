@@ -17,9 +17,10 @@ jobs:
           node-version: 12
       - run: pwd
       - run: mkdir out
-      - run: cd out
+      - run: cd 'out'
       - run: mkdir "$(date +"%d-%m-%Y")"
       - run: pwd
+      - run: ls
       - run: cd ../..
       - run: npm ci
       - run: npm run build
