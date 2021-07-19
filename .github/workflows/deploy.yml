@@ -17,9 +17,10 @@ jobs:
           node-version: 12
       - run: mkdir out
       - run: mkdir "out/$(date +"%d-%m-%Y-%H%M")"
+      - run: mkdir "out/$(date +"%d-%m-%Y-%H%M")/build"
       - run: npm ci
       - run: npm run build
-      - run: mv 'build' "out/$(date +"%d-%m-%Y-%H%M")"
+      - run: mv 'build' "out/$(date +"%d-%m-%Y-%H%M")/"
       - run: npm run export -o "out/$(date +"%d-%m-%Y-%H%M")"
       - run: rm "out/$(date +"%d-%m-%Y-%H%M")/build" -rf
       - uses: lauchacarro/Azure-Storage-Action@master
