@@ -18,7 +18,7 @@ jobs:
         with:
           node-version: 12
       - run: mkdir out
-      - run: mkdir "out/$(ver)"
+      - run: mkdir "out/${{ env.ver }}"
       - run: mkdir "out/$(ver)/build"
       - run: npm ci
       - run: npm run build
