@@ -15,6 +15,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
+      - run: mkdir out
       - run: cd out
       - run: mkdir "$(date +"%d-%m-%Y")"
       - run: cd ../..
