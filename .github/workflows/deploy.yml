@@ -19,6 +19,7 @@ jobs:
       - run: mkdir "out/$(date +"%d-%m-%Y")"
       - run: npm ci
       - run: npm run build
+      - run: mv 'build' "out/$(date +"%d-%m-%Y")"
       - run: npm run export -o "out/$(date +"%d-%m-%Y")"
       - uses: lauchacarro/Azure-Storage-Action@master
         with:
