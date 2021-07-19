@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: 12
       - run: mkdir out
-      - run: mkdir "out/${{GITHUB_SHA}}"
+      - run: mkdir "out/${GITHUB_SHA}"
       - run: mkdir "out/$(GITHUB_SHA)/build"
       - run: npm ci
       - run: npm run build
