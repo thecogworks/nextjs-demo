@@ -17,11 +17,11 @@ jobs:
           node-version: 12
       - run: mkdir out
       - run: mkdir "out/${GITHUB_SHA}"
-      - run: mkdir "out/$(GITHUB_SHA)/build"
+      - run: mkdir "out/${GITHUB_SHA}/build"
       - run: npm ci
       - run: npm run build
-      - run: mv 'build' "out/$(GITHUB_SHA)/"
-      - run: npm run export -o "out/$(GITHUB_SHA)"
+      - run: mv 'build' "out/${GITHUB_SHA}/"
+      - run: npm run export -o "out/${GITHUB_SHA}"
       - uses: lauchacarro/Azure-Storage-Action@master
         with:
           enabled-static-website: 'true'
