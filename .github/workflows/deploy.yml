@@ -11,13 +11,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - run: mkdir out
+      - run: cd out
+      - run: mkdir "$(date +"%d-%m-%Y")"
       - uses: actions/checkout@v2
+        with:
+          path: "$(date +"%d-%m-%Y")"
       - uses: actions/setup-node@v1
         with:
           node-version: 12
+      - run: cd "$(date +"%d-%m-%Y")"
       - run: npm ci
       - run: npm run build
       - run: npm run export
+      - run: cd ../..
       - uses: lauchacarro/Azure-Storage-Action@master
         with:
           enabled-static-website: 'true'
