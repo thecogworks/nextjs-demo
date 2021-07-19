@@ -15,6 +15,9 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
+      - run: cd out
+      - run: mkdir "$(date +"%d-%m-%Y")"
+      - run: cd ../..
       - run: npm ci
       - run: npm run build
       - run: npm run export -o "out/$(date +"%d-%m-%Y")"
