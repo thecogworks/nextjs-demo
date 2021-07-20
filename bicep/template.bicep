@@ -1,5 +1,5 @@
 param frontdoors_cogworks_headless_name string = 'cogworks-headless'
-param frontdoor_cogworks_website_host string = 'cogworksheadless.z28.web.core.windows.net'
+param frontdoor_cogworks_website_host string
 param frontdoors_cogworks_website_path string
 
 resource frontdoors_cogworks_headless_name_resource 'Microsoft.Network/frontdoors@2020-05-01' = {
