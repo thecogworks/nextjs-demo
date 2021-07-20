@@ -23,6 +23,12 @@ resource frontdoors_cogworks_headless_name_resource 'Microsoft.Network/frontdoor
               enabledState: 'Enabled'
             }
           ]
+          healthProbeSettings: {
+            id: '${resourceId('Microsoft.Network/frontdoors', frontdoors_cogworks_headless_name)}/HealthProbeSettings/healthProbeSettings-1626352308062'
+          }
+          loadBalancingSettings: {
+              id: '${resourceId('Microsoft.Network/frontdoors', frontdoors_cogworks_headless_name)}/LoadBalancingSettings/loadBalancingSettings-1626352308062'
+          }
         }
       }
     ]
