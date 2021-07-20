@@ -26,6 +26,17 @@ resource frontdoors_cogworks_headless_name_resource 'Microsoft.Network/frontdoor
         }
       }
     ]
+    frontendEndpoints: [
+      {
+        id: '${resourceId('Microsoft.Network/frontdoors', frontdoors_cogworks_headless_name)}/FrontendEndpoints/${frontdoors_cogworks_headless_name}-azurefd-net'
+        name: '${frontdoors_cogworks_headless_name}-azurefd-net'
+        properties: {
+          hostName: '${frontdoors_cogworks_headless_name}.azurefd.net'
+          sessionAffinityEnabledState: 'Disabled'
+          sessionAffinityTtlSeconds: 0
+        }
+      }
+    ]
     routingRules: [
       {
         name: 'All'
@@ -47,6 +58,9 @@ resource frontdoors_cogworks_headless_name_resource 'Microsoft.Network/frontdoor
             customForwardingPath: frontdoors_cogworks_website_path
             forwardingProtocol: 'HttpsOnly'
             '@odata.type': '#Microsoft.Azure.FrontDoor.Models.FrontdoorForwardingConfiguration'
+            backendPool: {
+              id: '${resourceId('Microsoft.Network/frontdoors', frontdoors_cogworks_headless_name)}/BackendPools/live'
+            }
           }
         }
       }
