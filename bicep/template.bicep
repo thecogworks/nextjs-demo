@@ -30,7 +30,6 @@ resource frontdoors_cogworks_headless_name_resource 'Microsoft.Network/frontdoor
     ]
     routingRules: [
       {
-        id: '${frontdoors_cogworks_headless_name_resource.id}/RoutingRules/All'
         name: 'All'
         properties: {
           acceptedProtocols: [
