@@ -43,4 +43,4 @@ jobs:
           subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
           resourceGroupName: 'gregm-rg'          
           template: ./bicep/template.bicep
-          parameters: frontdoors_cogworks_website_path=/out/${GITHUB_RUN_ID}  frontdoor_cogworks_website_host=cogworksheadless.z28.web.core.windows.net
+          parameters: frontdoors_cogworks_website_path=/out/test  frontdoor_cogworks_website_host=cogworksheadless.z28.web.core.windows.net
