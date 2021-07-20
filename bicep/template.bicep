@@ -32,6 +32,19 @@ resource frontdoors_cogworks_headless_name_resource 'Microsoft.Network/frontdoor
         }
       }
     ]
+    healthProbeSettings: [
+      {
+          id: '${resourceId('Microsoft.Network/frontdoors', frontdoors_cogworks_headless_name)}/HealthProbeSettings/healthProbeSettings-1626352308062'
+          name: 'healthProbeSettings-1626352308062'
+          properties: {
+              intervalInSeconds: 30
+              path: '/'
+              protocol: 'Https'
+              enabledState: 'Enabled'
+              healthProbeMethod: 'HEAD'
+          }
+      }
+    ]
     frontendEndpoints: [
       {
         id: '${resourceId('Microsoft.Network/frontdoors', frontdoors_cogworks_headless_name)}/FrontendEndpoints/${frontdoors_cogworks_headless_name}-azurefd-net'
