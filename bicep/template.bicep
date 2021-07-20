@@ -37,8 +37,20 @@ resource frontdoors_cogworks_headless_name_resource 'Microsoft.Network/frontdoor
         }
       }
     ]
+    loadBalancingSettings: [
+      {
+        id: '${resourceId('Microsoft.Network/frontdoors', frontdoors_cogworks_headless_name)}/LoadBalancingSettings/loadBalancingSettings-1626352308062'
+        name: 'loadBalancingSettings-1626352308062'
+        properties: {
+          additionalLatencyMilliseconds: 0
+          sampleSize: 4
+          successfulSamplesRequired: 2
+        }
+      }
+    ]
     routingRules: [
       {
+        id: '${resourceId('Microsoft.Network/frontdoors', frontdoors_cogworks_headless_name)}/RoutingRules/All'
         name: 'All'
         properties: {
           acceptedProtocols: [
