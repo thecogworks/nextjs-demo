@@ -3,17 +3,15 @@ param frontdoor_cogworks_website_host string
 param frontdoors_cogworks_website_path string
 
 resource frontdoors_cogworks_headless_name_resource 'Microsoft.Network/frontdoors@2020-05-01' = {
-  name: frontdoors_cogworks_headless
+  name: frontdoors_cogworks_headless_name
   location: 'Global'
   properties: {
-    resourceState: 'Enabled'
     enabledState: 'Enabled'
-    friendlyName: frontdoors_cogworks_headless
+    friendlyName: frontdoors_cogworks_headless_name
     backendPools: [
       {
         name: 'live'
         properties: {
-          resourceState: 'Enabled'
           backends: [
             {
               address: frontdoor_cogworks_website_host
@@ -40,7 +38,6 @@ resource frontdoors_cogworks_headless_name_resource 'Microsoft.Network/frontdoor
             '/*'
           ]
           enabledState: 'Enabled'
-          resourceState: 'Enabled'
           frontendEndpoints: [
             {
               id: '${resourceId('Microsoft.Network/frontdoors', frontdoors_cogworks_headless_name)}/FrontendEndpoints/${frontdoors_cogworks_headless_name}-azurefd-net'
